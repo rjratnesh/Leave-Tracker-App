@@ -61,11 +61,16 @@ def load_data():
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, 'r') as f:
             data = json.load(f)
-            # Migration: S -> SL
+            # Migration & Holiday Enforcement
             for emp in data:
-                for d_str, code in emp.get('attendance', {}).items():
+                # 1. Migrate S -> SL
+                for d_str, code in list(emp.get('attendance', {}).items()):
                     if code == 'S':
                         emp['attendance'][d_str] = 'SL'
+                
+                # 2. Enforce Paid Holidays from PAID_HOLIDAYS_2026
+                for h_date in PAID_HOLIDAYS_2026:
+                    emp['attendance'][h_date] = 'HO'
             return data
     return INITIAL_EMPLOYEES
 
