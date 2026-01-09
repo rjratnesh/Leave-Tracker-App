@@ -186,6 +186,25 @@ hide_st_style = """
             [data-testid="stSidebar"]:hover::after {
                 opacity: 0;
             }
+
+            /* Responsive Adjustments */
+            @media (max-width: 768px) {
+                [data-testid="stSidebar"] {
+                    width: 280px !important;
+                }
+                [data-testid="stSidebar"]::after {
+                    right: -25px;
+                    width: 25px;
+                    height: 100px;
+                    font-size: 10px;
+                }
+                .main .block-container {
+                    padding: 1rem !important;
+                    padding-top: 4rem !important;
+                }
+                .stTitle h1 {
+                    font-size: 1.8rem !important;
+                }
             }
 
             /* Table Header Bold Styling */
@@ -235,6 +254,18 @@ st.markdown("""
         justify-content: center;
         width: 50px;
         height: 50px;
+        transition: all 0.3s ease;
+    }
+    @media (max-width: 768px) {
+        .floating-logo {
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+        }
+        .floating-logo span {
+            font-size: 18px !important;
+        }
     }
     </style>
 """, unsafe_allow_html=True)
@@ -479,13 +510,53 @@ if page == "Attendance Tracker":
     # Attractive Seasonal Header
     month_icon = SEASONAL_ICONS.get(month, "📅")
     st.markdown(f"""
-        <div style="background: rgba(255,255,255,0.05); padding: 12px 20px; border-radius: 12px; border-left: 4px solid #00f2fe; margin-bottom: 15px;">
-            <h3 style="margin:0; color: #00f2fe; display: flex; align-items: center; gap: 12px;">
+        <div class="seasonal-header">
+            <h3 class="seasonal-title">
                 <span style="font-size: 28px;">{month_icon}</span>
-                <span>{calendar.month_name[month]} <span style="font-weight: 300; opacity: 0.7; font-size: 18px;">{year}</span></span>
+                <span>{calendar.month_name[month]} <span class="seasonal-year">{year}</span></span>
             </h3>
-            <p style="margin:2px 0 0 42px; opacity: 0.7; font-size: 12px;">Attendance Tracker</p>
+            <p class="seasonal-subtitle">Attendance Tracker</p>
         </div>
+        <style>
+        .seasonal-header {{
+            background: rgba(255,255,255,0.05); 
+            padding: 12px 20px; 
+            border-radius: 12px; 
+            border-left: 4px solid #00f2fe; 
+            margin-bottom: 15px;
+        }}
+        .seasonal-title {{
+            margin:0; 
+            color: #00f2fe; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+        }}
+        .seasonal-year {{
+            font-weight: 300; 
+            opacity: 0.7; 
+            font-size: 18px;
+        }}
+        .seasonal-subtitle {{
+            margin:2px 0 0 42px; 
+            opacity: 0.7; 
+            font-size: 12px;
+        }}
+        @media (max-width: 768px) {{
+            .seasonal-header {{
+                padding: 10px 15px;
+            }}
+            .seasonal-title {{
+                font-size: 1.2rem !important;
+            }}
+            .seasonal-year {{
+                font-size: 14px;
+            }}
+            .seasonal-subtitle {{
+                margin-left: 38px;
+            }}
+        }}
+        </style>
     """, unsafe_allow_html=True)
     
     # Data Editor
