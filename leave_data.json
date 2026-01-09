@@ -1,0 +1,34 @@
+[
+    {
+        "id": "1",
+        "name": "Rahul",
+        "attendance": {
+            "2026-01-01": "S"
+        }
+    },
+    {
+        "id": "2",
+        "name": "Maksud",
+        "attendance": {}
+    },
+    {
+        "id": "3",
+        "name": "Ratnesh",
+        "attendance": {}
+    },
+    {
+        "id": "4",
+        "name": "Abhishek",
+        "attendance": {}
+    },
+    {
+        "id": "5",
+        "name": "Aishwarya",
+        "attendance": {}
+    },
+    {
+        "id": "6",
+        "name": "Prashant",
+        "attendance": {}
+    }
+]
